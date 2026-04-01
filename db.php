@@ -1,5 +1,5 @@
 <?php 
-//try et catch = gerer les erreurs de connexion
+//try et catch = gerer les erreurs de connexion aaaa
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=carbyte", "root", ""); //connexion à la db
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//affichage des erreurs 
