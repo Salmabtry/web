@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //on stocke les données de l'user dans la session           
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nom'] = $user['nom'];
+            $_SESSION['user_prenom'] = $user['prenom'];
             $_SESSION['user_role'] = $user['role']; //grâce au role stocké dans la db on sait si c'est l'user ou l'admin
 
             //redirection vers la page d'accueil ->index.php
@@ -54,33 +55,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - CarByte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <img src="images/logo.png" alt="Logo CarByte">
+        <nav>
+            <a href="index.php">Accueil</a>
+            <a href="cars.php">Nos voitures</a>
+            <a href="terms.php">Conditions</a>
+            <a href="contact.php">Contact</a>
+            <a href="login.php">Se connecter</a>
+            <a href="register.php">S'inscrire</a>
+        </nav>
+    </header>
+    <main>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <h1>Connexion</h1>
 
-    <h1>Connexion</h1>
+                <?php
+                //si un message d'erreur existe alors on l'affiche
+                if (isset($message_erreur)) {
+                    echo "<p class='alert alert-danger'>" . $message_erreur . "</p>";
+                }
+                ?>
 
-    <?php
-    //si un message d'erreur existe alors on l'affiche
-    if (isset($message_erreur)) {
-        echo "<p>" . $message_erreur . "</p>";
-    }
-    ?>
+                <!--formulaire de connexion -- données envoyés en POST-->
+                <form method="POST" action="login.php">
 
-    <!--formulaire de connexion -- données envoyés en POST-->
-    <form method="POST" action="login.php">
+                    <div class="mb-3">
+                        <label>Email :</label>
+                        <input type="email" name="email" required>
+                    </div>
 
-        <label>Email :</label><br>
-        <input type="email" name="email" required><br><br>
+                    <div class="mb-3">
+                        <label>Mot de passe :</label>
+                        <input type="password" name="password" required>
+                    </div>
 
-        <label>Mot de passe :</label><br>
-        <input type="password" name="password" required><br><br>
+                    <button type="submit" class="btn">Se connecter</button>
 
-        <button type="submit">Se connecter</button>
+                </form>
 
-    </form>
-
-    <!--option si on n'a pas encore de compte, redirection vers la page d'inscription-->
-    <p>Pas encore de compte ? <a href="register.php">S'inscrire</a></p>
-
+                <!--option si on n'a pas encore de compte, redirection vers la page d'inscription-->
+                <p class="mt-3">Pas encore de compte ? <a href="register.php">S'inscrire</a></p>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

@@ -9,6 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditions - CarByte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,12 +23,12 @@ session_start();
             <a href="contact.php">Contact</a>
 
             <?php if (isset($_SESSION['user_id'])) { ?> <!--verification si qlqn est connecté-->
-                <span>Bonjour <?php echo $_SESSION['user_nom']; ?> !</span> <!--affichage du nom de l'user connecté-->
-                <a href="reservations.php">Mes réservations</a>
+                <a href="reservations.php">Réserver un véhicule</a>
                 <a href="logout.php">Se déconnecter</a>
                 <?php if ($_SESSION['user_role'] == 'admin') { ?> <!--si l'user est l'admin-->
                     <a href="admin.php">Administration</a>
                 <?php } ?>
+                <span>Bonjour <?php echo $_SESSION['user_prenom']; ?> !</span> <!--affichage du nom de l'user connecté-->
             <?php } else { ?> <!--si personne n'est connecté-->
                 <a href="login.php">Se connecter</a>
                 <a href="register.php">S'inscrire</a>

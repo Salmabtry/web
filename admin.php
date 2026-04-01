@@ -120,6 +120,7 @@ $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion - CarByte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -131,8 +132,8 @@ $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
             <a href="cars.php">Nos voitures</a>
             <a href="terms.php">Conditions</a>
             <a href="contact.php">Contact</a>
-            <span>Bonjour <?php echo $_SESSION['user_nom']; ?> !</span>
             <a href="logout.php">Se déconnecter</a>
+            <span>Bonjour <?php echo $_SESSION['user_prenom']; ?> !</span>
         </nav>
     </header>
 
@@ -156,87 +157,88 @@ $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
                 }
                 ?>
             </h2>
+            <div class="col-md-6">
+                <form method="POST" action="admin.php" enctype="multipart/form-data">
 
-            <form method="POST" action="admin.php" enctype="multipart/form-data">
+                    <!--champ cache pour l'admin mais pas php -> ia-->
+                    <!--si c'est vide on ajoute, rempli on modifie-->
+                    <input type="hidden" name="id_voiture" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['id']; ?>">
 
-                <!--champ cache pour l'admin mais pas php -> ia-->
-                <!--si c'est vide on ajoute, rempli on modifie-->
-                <input type="hidden" name="id_voiture" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['id']; ?>">
+                    <!--champ caché pour garder l'ancienne image-->
+                    <input type="hidden" name="ancienne_image" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['image']; ?>">
 
-                <!--champ caché pour garder l'ancienne image-->
-                <input type="hidden" name="ancienne_image" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['image']; ?>">
+                    <label>Marque :</label><br>
+                    <input type="text" name="marque" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['marque']; ?>" required><br><br>
 
-                <label>Marque :</label><br>
-                <input type="text" name="marque" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['marque']; ?>" required><br><br>
+                    <label>Modèle :</label><br>
+                    <input type="text" name="modele" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['modele']; ?>" required><br><br>
 
-                <label>Modèle :</label><br>
-                <input type="text" name="modele" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['modele']; ?>" required><br><br>
+                    <label>Catégorie :</label><br>
+                    <select name="categorie">
+                        <option value="citadine" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'citadine') echo 'selected'; ?>>Citadine</option>
+                        <option value="SUV" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'SUV') echo 'selected'; ?>>SUV</option>
+                        <option value="sportive" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'sportive') echo 'selected'; ?>>Sportive</option>
+                    </select><br><br>
 
-                <label>Catégorie :</label><br>
-                <select name="categorie">
-                    <option value="citadine" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'citadine') echo 'selected'; ?>>Citadine</option>
-                    <option value="SUV" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'SUV') echo 'selected'; ?>>SUV</option>
-                    <option value="sportive" <?php if(isset($car_modifier) && $car_modifier['categorie'] == 'sportive') echo 'selected'; ?>>Sportive</option>
-                </select><br><br>
+                    <label>Carburant :</label><br>
+                    <select name="carburant">
+                        <option value="essence" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'essence') echo 'selected'; ?>>Essence</option>
+                        <option value="diesel" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'diesel') echo 'selected'; ?>>Diesel</option>
+                        <option value="electrique" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'electrique') echo 'selected'; ?>>Électrique</option>
+                    </select><br><br>
 
-                <label>Carburant :</label><br>
-                <select name="carburant">
-                    <option value="essence" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'essence') echo 'selected'; ?>>Essence</option>
-                    <option value="diesel" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'diesel') echo 'selected'; ?>>Diesel</option>
-                    <option value="electrique" <?php if(isset($car_modifier) && $car_modifier['carburant'] == 'electrique') echo 'selected'; ?>>Électrique</option>
-                </select><br><br>
+                    <label>Places :</label><br>
+                    <input type="number" name="places" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['places']; ?>" required><br><br>
 
-                <label>Places :</label><br>
-                <input type="number" name="places" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['places']; ?>" required><br><br>
+                    <label>Année :</label><br>
+                    <input type="number" name="annee" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['annee']; ?>" required><br><br>
 
-                <label>Année :</label><br>
-                <input type="number" name="annee" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['annee']; ?>" required><br><br>
+                    <label>Couleur :</label><br>
+                    <input type="text" name="couleur" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['couleur']; ?>" required><br><br>
 
-                <label>Couleur :</label><br>
-                <input type="text" name="couleur" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['couleur']; ?>" required><br><br>
+                    <label>Boite :</label><br>
+                    <select name="boite">
+                        <option value="manuelle" <?php if(isset($car_modifier) && $car_modifier['boite'] == 'manuelle') echo 'selected'; ?>>Manuelle</option>
+                        <option value="automatique" <?php if(isset($car_modifier) && $car_modifier['boite'] == 'automatique') echo 'selected'; ?>>Automatique</option>
+                    </select><br><br>
 
-                <label>Boite :</label><br>
-                <select name="boite">
-                    <option value="manuelle" <?php if(isset($car_modifier) && $car_modifier['boite'] == 'manuelle') echo 'selected'; ?>>Manuelle</option>
-                    <option value="automatique" <?php if(isset($car_modifier) && $car_modifier['boite'] == 'automatique') echo 'selected'; ?>>Automatique</option>
-                </select><br><br>
+                    <label>Caution (€) :</label><br>
+                    <input type="number" name="caution" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['caution']; ?>" required><br><br>
 
-                <label>Caution (€) :</label><br>
-                <input type="number" name="caution" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['caution']; ?>" required><br><br>
+                    <label>Prix par jour (€) :</label><br>
+                    <input type="number" name="prix" 
+                    value="<?php if(isset($car_modifier)) echo $car_modifier['prix']; ?>" required><br><br>
 
-                <label>Prix par jour (€) :</label><br>
-                <input type="number" name="prix" 
-                value="<?php if(isset($car_modifier)) echo $car_modifier['prix']; ?>" required><br><br>
+                    <label>Image :</label><br>
+                    <input type="file" name="image"><br><br>
 
-                <label>Image :</label><br>
-                <input type="file" name="image"><br><br>
+                    <label>Disponible :</label><br>
+                    <select name="disponible">
+                        <option value="oui" <?php if(isset($car_modifier) && $car_modifier['disponible'] == 'oui') echo 'selected'; ?>>Oui</option>
+                        <option value="non" <?php if(isset($car_modifier) && $car_modifier['disponible'] == 'non') echo 'selected'; ?>>Non</option>
+                    </select><br><br>
 
-                <label>Disponible :</label><br>
-                <select name="disponible">
-                    <option value="oui" <?php if(isset($car_modifier) && $car_modifier['disponible'] == 'oui') echo 'selected'; ?>>Oui</option>
-                    <option value="non" <?php if(isset($car_modifier) && $car_modifier['disponible'] == 'non') echo 'selected'; ?>>Non</option>
-                </select><br><br>
+                    <!--bouton modifier ou envoyer par raport a l'action qu'on a sélectionner au debut-->
+                    <button type="submit">
+                        <?php
+                        if (isset($car_modifier)) {
+                            echo "Modifier";
+                        } else {
+                            echo "Ajouter";
+                        }
+                        ?>
+                    </button>
 
-                <!--bouton modifier ou envoyer par raport a l'action qu'on a sélectionner au debut-->
-                <button type="submit">
-                    <?php
-                    if (isset($car_modifier)) {
-                        echo "Modifier";
-                    } else {
-                        echo "Ajouter";
-                    }
-                    ?>
-                </button>
-
-            </form>
+                </form>
+            </div>
         </section>
 
         <section>
@@ -244,7 +246,7 @@ $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             <?php if (count($cars) > 0) { ?>
 
-                <table><!--tableau-->
+                <table class="table table-dark table-hover"><!--tableau-->
                     <tr><!--une ligne du tableau-->
                         <th>Image</th><!--une cellule titre du tableau-->
                         <th>Marque</th>

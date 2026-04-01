@@ -48,40 +48,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!--ligne de code pour rendre un site compatible sur modbile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - CarByte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">    
 </head>
 <body>
+    <header>
+        <img src="images/logo.png" alt="Logo CarByte">
+        <nav>
+            <a href="index.php">Accueil</a>
+            <a href="cars.php">Nos voitures</a>
+            <a href="terms.php">Conditions</a>
+            <a href="contact.php">Contact</a>
+            <a href="login.php">Se connecter</a>
+            <a href="register.php">S'inscrire</a>
+        </nav>
+    </header>
+    <main>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
 
-    <h1>Création du compte</h1>
+                <h1>Création du compte</h1>
 
-    <?php
-    //affichage du message de création de compte
-    if (isset($message_succes)) {
-        echo "<p>" . $message_succes . "</p>";
-    }
-    //affichage du message d'erreur de création de compte
-    if (isset($message_erreur)) {
-        echo "<p>" . $message_erreur . "</p>";
-    }
-    ?>
+                <?php
+                //affichage du message de création de compte
+                if (isset($message_succes)) {
+                    echo "<p>" . $message_succes . "</p>";
+                }
+                //affichage du message d'erreur de création de compte
+                if (isset($message_erreur)) {
+                    echo "<p>" . $message_erreur . "</p>";
+                }
+                ?>
 
-   <!--formulaire HTML que l'user voit sur la page--> 
-    <form method="POST" action="register.php"> <!-- envoie les données en POST-->
+                <!--formulaire HTML que l'user voit sur la page--> 
+                <form method="POST" action="register.php"> <!-- envoie les données en POST-->
 
-        <label>Nom :</label><br><!--étiquette Nom-->
-        <input type="text" name="nom" required><br><br>
+                    <label>Nom :</label><br><!--étiquette Nom-->
+                    <input type="text" name="nom" required><br><br>
 
-        <label>Prénom :</label><br><!--étiquette Prénom-->
-        <input type="text" name="prenom" required><br><br>
+                    <label>Prénom :</label><br><!--étiquette Prénom-->
+                    <input type="text" name="prenom" required><br><br>
 
-        <label>Email :</label><br><!--étiquette Email-->
-        <input type="email" name="email" required><br><br><!--le navigateur vérifie que c'est une forme d'email valide grâce au type="mail"-->
+                    <label>Email :</label><br><!--étiquette Email-->
+                    <input type="email" name="email" required><br><br><!--le navigateur vérifie que c'est une forme d'email valide grâce au type="mail"-->
 
-        <label>Mot de passe :</label><br><!--étiquette Mot de passe-->
-        <input type="password" name="password" required><br><br><!--le type="password" va caché le mdp avec des points-->
+                    <label>Mot de passe :</label><br><!--étiquette Mot de passe-->
+                    <input type="password" name="password" required><br><br><!--le type="password" va caché le mdp avec des points-->
 
-        <button type="submit">S'inscrire</button><!--submit = envoi le formulaire en POST-->
+                    <button type="submit">S'inscrire</button><!--submit = envoi le formulaire en POST-->
 
-    </form>
-
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

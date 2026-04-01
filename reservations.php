@@ -64,6 +64,7 @@ $mes_reservations = $requete->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservations - CarByte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -75,9 +76,9 @@ $mes_reservations = $requete->fetchAll(PDO::FETCH_ASSOC);
             <a href="cars.php">Nos voitures</a>
             <a href="terms.php">Conditions</a>
             <a href="contact.php">Contact</a>
-            <span>Bonjour <?php echo $_SESSION['user_nom']; ?> !</span>
-            <a href="reservations.php">Mes réservations</a>
+            <a href="reservations.php">Réserver un véhicule</a>
             <a href="logout.php">Se déconnecter</a>
+            <span>Bonjour <?php echo $_SESSION['user_prenom']; ?> !</span>
         </nav>
     </header>
 
@@ -93,53 +94,53 @@ $mes_reservations = $requete->fetchAll(PDO::FETCH_ASSOC);
         <!--liste voiture-->
         <section>
             <h2>Nos voitures</h2>
+            <div class="row">
+                <?php foreach ($cars as $car) { ?>
 
-            <?php foreach ($cars as $car) { ?>
+                    <div class="col-md-4">
+                        <div class="car-card">
+                            <img src="images/<?php echo $car['image']; ?>"alt="<?php echo $car['marque'] . ' ' . $car['modele']; ?>">
+                        
+                        <h3><?php echo $car['marque'] . ' ' . $car['modele']; ?></h3>
+                        <p>Catégorie : <?php echo $car['categorie']; ?></p>
+                        <p>Carburant : <?php echo $car['carburant']; ?></p>
+                        <p>Places : <?php echo $car['places']; ?></p>
+                        <p>Année : <?php echo $car['annee']; ?></p>
+                        <p>Couleur : <?php echo $car['couleur']; ?></p>
+                        <p>Boite : <?php echo $car['boite']; ?></p>
+                        <p>Caution : <?php echo $car['caution']; ?> €</p>
+                        <p>Prix : <?php echo $car['prix']; ?> € / jour</p>
 
-                <div class="car-card">
-                    <img src="images/<?php echo $car['image']; ?>" 
-                    alt="<?php echo $car['marque'] . ' ' . $car['modele']; ?>">
-                    
-                    <h3><?php echo $car['marque'] . ' ' . $car['modele']; ?></h3>
-                    <p>Catégorie : <?php echo $car['categorie']; ?></p>
-                    <p>Carburant : <?php echo $car['carburant']; ?></p>
-                    <p>Places : <?php echo $car['places']; ?></p>
-                    <p>Année : <?php echo $car['annee']; ?></p>
-                    <p>Couleur : <?php echo $car['couleur']; ?></p>
-                    <p>Boite : <?php echo $car['boite']; ?></p>
-                    <p>Caution : <?php echo $car['caution']; ?> €</p>
-                    <p>Prix : <?php echo $car['prix']; ?> € / jour</p>
+                        <?php if ($car['disponible'] == 'oui') { ?>
+                            <p>Disponible</p>
 
-                    <?php if ($car['disponible'] == 'oui') { ?>
-                        <p>Disponible</p>
+                            <!--formulaire de reservations-->
+                            <form method="POST" action="reservations.php" enctype="multipart/form-data">
 
-                        <!--formulaire de reservations-->
-                        <form method="POST" action="reservations.php" enctype="multipart/form-data">
+                                <!--champ caché de l'id-->
+                                <input type="hidden" name="id_car" value="<?php echo $car['id']; ?>">
 
-                            <!--champ caché de l'id-->
-                            <input type="hidden" name="id_car" value="<?php echo $car['id']; ?>">
+                                <label>Date de début :</label><br>
+                                <input type="date" name="date_debut" required><br><br>
 
-                            <label>Date de début :</label><br>
-                            <input type="date" name="date_debut" required><br><br>
+                                <label>Date de fin :</label><br>
+                                <input type="date" name="date_fin" required><br><br>
 
-                            <label>Date de fin :</label><br>
-                            <input type="date" name="date_fin" required><br><br>
+                                <label>Carte d'identité :</label><br>
+                                <input type="file" name="carte_identite" required><br><br>
 
-                            <label>Carte d'identité :</label><br>
-                            <input type="file" name="carte_identite" required><br><br>
+                                <button type="submit">Réserver</button>
 
-                            <button type="submit">Réserver</button>
+                            </form>
 
-                        </form>
+                        <?php } else { ?>
+                            <p>Non disponible</p>
+                        <?php } ?>
 
-                    <?php } else { ?>
-                        <p>Non disponible</p>
-                    <?php } ?>
-
+                    </div>
                 </div>
-
             <?php } ?>
-
+        </div>
         </section>
 
         <!--partie mes reservations-->

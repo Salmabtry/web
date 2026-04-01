@@ -1,0 +1,195 @@
+*{ /* "*" pour signifier toute la page */
+    margin: 0;/*supprime toutes les marges faites par défaut*/
+    padding: 0;/*supprime tous les escpacement par défaut*/
+    box-sizing: border-box; /*calcule toute la page avec les bordures*/
+}
+
+body {
+    background-color: #0d0d0d;/*fond de la page en noir*/
+    color: #ffffff;/*écriture des body en blanc */
+    font-family: 'Arial', sans-serif; /*police arial*/
+}
+
+header { /*entete du site*/
+    background-color: #1a1a1a;/* fond de l'entete */
+    padding: 15px 30px;/* 15px en haut/bas, 30px gauche/droite */
+    display: flex;/*met les éléments en ligne*/
+    align-items: center;/*alignement vertical*/
+    justify-content: space-between;/*logo à gauche et menu à droite*/
+    border-bottom: 2px solid #00e5cc;/*ligne turquoise en bas du header*/
+}
+
+header img { /*concerne le logo du site*/
+    height: 50px;/*taille du logo*/
+}
+
+nav { /*menu de navigation*/
+    display: flex;/*en ligne*/
+    align-items: center;/*centre vertical*/
+    gap: 20px;/*espace de 20px entre chaque lien*/
+}
+
+nav a {
+    color: #ffffff;/*lien en couleur blanche*/
+    text-decoration: none;/*retire le soulignement*/
+    font-size: 15px;/*taille du texte*/
+    transition: color 0.3s;/*transitio, d'animation de 0.3s*/
+}
+
+nav a:hover {
+    color: #00e5cc; /*survolement de lien turquoise*/
+}
+
+nav span {
+    color: #00e5cc;/*le "Bonjour user" en turquoise*/
+    font-weight: bold; /*texte en gras*/
+}
+
+main {
+    padding: 40px;/*marge de 40 px autour du contenu*/
+    max-width: 1200px;/*largeur maximale de la page de 1200px*/
+    margin: 0 auto;/*centre le contenu horizontalement*/
+}
+
+h1 {
+    color: #00e5cc;/*Titre principal en turquoise*/
+    margin-bottom: 30px;/*espace de 30px entre le titre et le sous titre*/
+    font-size: 2rem;/*taille du titre 2x plus grande*/
+}
+
+h2 {
+    color: #4FC3F7;/*sous-titre en bleu*/
+    margin-bottom: 20px;/*espace de 20px en dessous*/
+    margin-top: 30px;/*espace de 30px au-dessus*/
+    font-size: 1.5rem;/*taille du sous-titre 1.5x plus grande*/
+}
+
+p {
+    color: #aaaaaa;/*texte du paragraphe en gris*/
+    margin-bottom: 10px;/*espace de 10px entre les paragraphes*/
+    line-height: 1.6;/*hauteur de ligne de 1.6*/
+}
+
+button, .btn {
+    background-color: #00e5cc;/*fond turquoise*/
+    color: #0d0d0d;/*texte noir*/
+    border: none;/*pas de bordure*/
+    padding: 10px 20px;/*espace interieur*/
+    border-radius: 5px;/*coin arrondi*/
+    cursor: pointer;/*curseur de sur-vol*/
+    font-weight: bold;/*texte en gras*/
+    transition: background-color 0.3s; /*animation douce*/
+}
+
+button:hover, .btn:hover {
+    background-color: #4FC3F7;/*fond bleu au survol*/
+    color: #0d0d0d;/*texte noir*/
+}
+
+/*formulaire*/
+input, select, textarea {
+    background-color: #1a1a1a;/*fond gris foncé*/
+    border: 1px solid #00e5cc;/*bordure turquoise*/
+    color: #ffffff;/*texte blanc*/
+    padding: 8px 12px;/*espace interieur*/
+    border-radius: 5px;/*coins arrondis*/
+    width: 100%;/*prend toute la largeur disponible*/
+    margin-bottom: 10px;/*espace en-dessous*/
+}
+
+
+input:focus, select:focus, textarea:focus {
+    outline: none;/*enleve le contour bleu par défaut*/
+    border-color: #4FC3F7;/*bordure bleu quand on clique dessus*/
+}
+
+label {
+    color: #aaaaaa;/*label gris clair*/
+    margin-bottom: 5px;/*espace entre le label et le champ*/
+    display: block;/*label prend toute la largeur et le champ en dessous*/
+}
+
+.car-card {
+    background-color: #1a1a1a;/*fond gris foncé*/
+    border: 1px solid #00e5cc;/*bordure turquoise*/
+    border-radius: 10px;/*coins encore plus arrondis */
+    padding: 20px;/*espace interieur*/
+    margin-bottom: 20px;/*espace entre les cartes*/
+    transition: transform 0.3s;/*animation*/
+}
+
+.car-card:hover {
+    transform: translateY(-5px); /*la carte remonte de 5px au survol*/
+}
+
+.car-card img {
+    width: 100%;/*image prend la largeur de la carte*/
+    height: 200px;/*heuteur de l'image*/
+    object-fit: cover;/*image recadrée*/
+    border-radius: 8px;/*coins de l'image arrondis*/
+    margin-bottom: 15px;/*espace enter l'image et le texte*/
+}
+
+table {
+    width: 100%;/*tableau prend toute la largeur*/
+    border-collapse: collapse;/*supprime les espaces entre les cellules*/
+    margin-top: 20px;/*espace au dessus du tableau*/
+}
+
+th {
+    background-color: #00e5cc;/*en-tête en turquoise*/
+    color: #0d0d0d;/*texte en noir*/
+    padding: 12px;/*espace interieur*/
+    text-align: left;/*texte aligné à gauche*/
+}
+
+td {
+    padding: 12px;/*espace interieur*/
+    border-bottom: 1px solid #1a1a1a;/*ligne séparatrice*/
+    color: #aaaaaa;/*texte gris clair*/
+}
+
+tr:hover {
+    background-color: #1a1a1a; /*ligne survolé devietn gris foncé*/
+}
+
+/*tous les liens*/
+a[href*="modifier"] {
+    color: #4FC3F7;/*lien modifier en bleu*/
+    margin-right: 10px;/*espace à droite*/
+    text-decoration: none;
+}
+
+a[href*="supprimer"] {
+    color: #ff4444;/*lien supprimer en rouge*/
+    text-decoration: none;
+}
+
+a[href*="confirmer"] {
+    color: #00e5cc;/*lien confirmer en turquoise*/
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+a[href*="refuser"] {
+    color: #ff4444;/*lien refuser en rouge*/
+    text-decoration: none;
+}
+
+footer {
+    background-color: #1a1a1a;/*fond gris foncé*/
+    color: #aaaaaa;/*texte en gris clair*/
+    text-align: center;/*texte centré*/
+    padding: 20px;/*espace intérieur*/
+    border-top: 2px solid #00e5cc;/*ligne turquoise en haut du footer*/
+    margin-top: 50px;/*espace entre le contenu et le footer*/
+}
+
+.message-succes {
+    background-color: #00e5cc;/*fond turquoise*/
+    color: #0d0d0d;/*texte en noir*/
+    padding: 10px 20px;/*espace intérieur*/
+    border-radius: 5px;/*coins arrondis*/
+    margin-bottom: 20px;/*espace en dessous*/
+    font-weight: bold;/*texte en gras*/
+}
