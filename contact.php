@@ -3,37 +3,7 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--adaptation pour telephone-->
-    <title>Contact - CarByte</title><!-- tritre de la page-->
-    <link rel="stylesheet" href="css/style.css"><!-- lien vers fichier css-->
-</head>
-<body>
-
-    <header>
-        <img src="images/logo.png" alt="Logo CarByte"><!--logo du site-->
-        <nav><!--menu de naviigation du site-->
-            <a href="index.php">Accueil</a>
-            <a href="cars.php">Nos voitures</a>
-            <a href="terms.php">Conditions</a>
-            <a href="contact.php">Contact</a>
-
-            <?php if (isset($_SESSION['user_id'])) { ?> <!--vérification si un user est connecter-->
-                <a href="reservations.php">Réserver un véhicule</a>
-                <a href="logout.php">Se déconnecter</a><!-- les liens concernant le role user-->
-                <?php if ($_SESSION['user_role'] == 'admin') { ?>
-                <a href="admin.php">Administration</a><!--lien concernant le role de admin si admin connecter-->
-                <?php } ?>
-                <span>Bonjour <?php echo $_SESSION['user_prenom']; ?> !</span>
-            <?php } else { ?>
-                <a href="login.php">Se connecter</a>
-                <a href="register.php">S'inscrire</a><!-- else pas de user connecté -> lien pour s'inscrire/se connecter-->
-            <?php } ?>
-        </nav>
-    </header>
+<?php include('header.php'); ?>
 
     <main>
 

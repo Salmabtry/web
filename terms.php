@@ -3,38 +3,7 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditions - CarByte</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-    <header>
-        <img src="images/logo.png" alt="Logo CarByte">
-        <nav>
-            <a href="index.php">Accueil</a>
-            <a href="cars.php">Nos voitures</a>
-            <a href="terms.php">Conditions</a>
-            <a href="contact.php">Contact</a>
-
-            <?php if (isset($_SESSION['user_id'])) { ?> <!--verification si qlqn est connecté-->
-                <a href="reservations.php">Réserver un véhicule</a>
-                <a href="logout.php">Se déconnecter</a>
-                <?php if ($_SESSION['user_role'] == 'admin') { ?> <!--si l'user est l'admin-->
-                    <a href="admin.php">Administration</a>
-                <?php } ?>
-                <span>Bonjour <?php echo $_SESSION['user_prenom']; ?> !</span> <!--affichage du nom de l'user connecté-->
-            <?php } else { ?> <!--si personne n'est connecté-->
-                <a href="login.php">Se connecter</a>
-                <a href="register.php">S'inscrire</a>
-            <?php } ?>
-        </nav>
-    </header>
+<?php include('header.php'); ?>
 
     <main>
         <h1>Conditions générales de location - CarByte</h1>

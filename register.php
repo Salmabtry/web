@@ -40,29 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <!--definition de l'encodage universelle-->
-    <meta charset="UTF-8">
-    <!--ligne de code pour rendre un site compatible sur modbile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - CarByte</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">    
-</head>
-<body>
-    <header>
-        <img src="images/logo.png" alt="Logo CarByte">
-        <nav>
-            <a href="index.php">Accueil</a>
-            <a href="cars.php">Nos voitures</a>
-            <a href="terms.php">Conditions</a>
-            <a href="contact.php">Contact</a>
-            <a href="login.php">Se connecter</a>
-            <a href="register.php">S'inscrire</a>
-        </nav>
-    </header>
+<?php include('header.php'); ?>
+
     <main>
         <div class="row justify-content-center">
             <div class="col-md-5">

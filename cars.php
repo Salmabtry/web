@@ -13,48 +13,7 @@ $requete->execute();
 $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--ligne de code pour adapter la page aux mobiles-->
-    <title>Nos voitures - CarByte</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-    <header>
-        <img src="images/logo.png" alt="Logo CarByte">
-        <nav>
-            <!--lien de navigation fixes-->
-            <a href="index.php">Accueil</a>
-            <a href="cars.php">Nos voitures</a>
-            <a href="terms.php">Conditions</a>
-            <a href="contact.php">Contact</a>
-
-            <?php
-            //vérification si qlqn est connecté
-            if (isset($_SESSION['user_id'])) {
-                //si oui message "Bonjour user" + page déconnexion
-                echo "<a href='logout.php'>Se déconnecter</a>";
-                //si admin alors +page admin
-                if ($_SESSION['user_role'] == 'admin') {
-                    echo "<a href='admin.php'>Administration</a>";
-                }
-                //si user alors +page voiture disponibles
-                if ($_SESSION['user_role'] == 'user') {
-                    echo "<a href='reservations.php'>Réserver un véhicule</a>";
-                }
-                echo "<span>Bonjour " . $_SESSION['user_prenom'] . " !</span>";
-            } else {
-                //sinon page connexion ou inscription
-                echo "<a href='login.php'>Se connecter</a>";
-                echo "<a href='register.php'>S'inscrire</a>";
-            }
-        ?>
-        </nav>
-    </header>
+<?php include('header.php'); ?>
 
     <main>
 
