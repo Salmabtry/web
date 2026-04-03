@@ -2,7 +2,7 @@
 
 session_start();
 
-include('db.php');
+include('../db.php');
 
 //vérification si admin est connecté 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin') {
@@ -114,7 +114,7 @@ $requete->execute();
 $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php include('header.php'); ?>
+<?php include('../header.php'); ?>
 
     <main>
 

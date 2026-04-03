@@ -1,9 +1,9 @@
 <?php
 //ouverture de la session
 session_start();
-?>
 
-<?php include('header.php'); ?>
+include('../header.php');
+?>
 
     <main>
 

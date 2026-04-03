@@ -2,7 +2,8 @@
 
 session_start();//on demarre la session
 
-include('db.php');//on apelle le fichier de connexion à la db pour eviter de devoir mettre le code de connexion à chaque fichier
+include('../db.php');
+include('../header.php');
 
 //vérification si le sdonnées ont bien étés envoyées
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -39,8 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-<?php include('header.php'); ?>
 
     <main>
         <div class="row justify-content-center">

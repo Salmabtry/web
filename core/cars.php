@@ -2,7 +2,8 @@
 
 session_start();
 
-include('db.php');
+include('../db.php');
+include('../header.php');
 
 //récupération de toutes les voiture de la table cars dans la db
 $requete = $pdo->prepare("SELECT * FROM cars");
@@ -12,8 +13,6 @@ $requete->execute();
 //fetchALL() commande venant de l'ia
 $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-<?php include('header.php'); ?>
 
     <main>
 
@@ -29,8 +28,7 @@ $cars = $requete->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-md-4">
                     <div class="car-card">
                         <!--photo de la voiture-->
-                        <img src="images/<?php echo $car['image']; ?>" alt="<?php echo $car['marque'] . ' ' . $car['modele']; ?>">
-                        
+                        <img src="/CarByte/images/<?php echo $car['image']; ?>" alt="<?php echo $car['marque'] . ' ' . $car['modele']; ?>">                        
                         <!--infos de la voiture-->
                         <h2><?php echo $car['marque'] . ' ' . $car['modele']; ?></h2>
                         <p>Catégorie: <?php echo $car['categorie']; ?></p>

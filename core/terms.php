@@ -1,9 +1,10 @@
 <?php
 
 session_start();
+
+include('../header.php');
 ?>
 
-<?php include('header.php'); ?>
 
     <main>
         <h1>Conditions générales de location - CarByte</h1>

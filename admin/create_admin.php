@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../db.php');
 
 //vérification si un admin existe deja ou non
 //sinon le code crée un admin à chaque fois qu'on lance le fichier

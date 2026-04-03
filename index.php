@@ -4,6 +4,7 @@ session_start();
 
 //appel du fichier comprenant la connexion à la db
 include('db.php');
+include('header.php');
 
 //récupération du contenu de la page acceuil depuis la table "content" dans la db
 $requete = $pdo->prepare("SELECT * FROM content WHERE id = 1");
@@ -11,16 +12,14 @@ $requete->execute();
 $content = $requete->fetch(PDO::FETCH_ASSOC);//mise en forme de tableau associatif
 ?>
 
-<?php include('header.php'); ?>
-
     <main>
 
         <section><!--partie concernant le slogan-->
             <?php
             //if vérificateur si les données existent dans la db
             if ($content) {
-                echo "<h1>" . $content['titre'] . "</h1>";
-                echo "<p>" . $content['slogan'] . "</p>";
+                // echo "<h1>" . $content['titre'] . "</h1>";
+                // echo "<p>" . $content['slogan'] . "</p>";
                 echo "<div>" . $content['texte'] . "</div>";
             } else {
                 
@@ -39,13 +38,13 @@ $content = $requete->fetch(PDO::FETCH_ASSOC);//mise en forme de tableau associat
 
                 <form method="POST" action="index.php"><!--données envoyer en POST quand on clique sur sauvegarder -- le formulaire s'envoie à lui même-->
 
-                    <label>Titre :</label><br>
+                    <!-- <label>Titre :</label><br>
                     <input type="text" name="titre" 
-                    value="<?php if($content) echo $content['titre']; ?>" required><br><br><!--si le titre existe dans la db on l'affiche, sinon on laisse vide-->
+                    value="<?php //if($content) echo $content['titre']; ?>" required><br><br>si le titre existe dans la db on l'affiche, sinon on laisse vide -->
 
-                    <label>Slogan :</label><br>
+                    <!-- <label>Slogan :</label><br>
                     <input type="text" name="slogan" 
-                    value="<?php if($content) echo $content['slogan']; ?>" required><br><br><!--pareil pour le titre-->
+                    value="<?php //if($content) echo $content['slogan']; ?>" required><br><br>pareil pour le titre -->
 
                     <label>Texte principal :</label><br>
                     <!--CKEditor s'appliquera ici-->
@@ -74,19 +73,19 @@ $content = $requete->fetch(PDO::FETCH_ASSOC);//mise en forme de tableau associat
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sauvegarder'])) {
 
             //on récupère nos 3 valeurs entrées par l'admin 
-            $titre = $_POST['titre'];
-            $slogan = $_POST['slogan'];
+            // $titre = $_POST['titre'];
+            // $slogan = $_POST['slogan'];
             $texte = $_POST['texte'];
 
             //if un contenu existe deja en db
             if ($content) {
                 //on met à jour les colonnes titre,slogan et texte de la ligne 1 de la table 
-                $requete = $pdo->prepare("UPDATE content SET titre = ?, slogan = ?, texte = ? WHERE id = 1");
-                $requete->execute([$titre, $slogan, $texte]);
+                $requete = $pdo->prepare("UPDATE content SET texte = ? WHERE id = 1");
+                $requete->execute([$texte]);
             } else { //else pas de contenu dans la db
                 //on crée une nouvelle ligne 
-                $requete = $pdo->prepare("INSERT INTO content (titre, slogan, texte) VALUES (?, ?, ?)");
-                $requete->execute([$titre, $slogan, $texte]);
+                $requete = $pdo->prepare("INSERT INTO content (texte) VALUES (?)");
+                $requete->execute([$texte]);
             }
 
             //on recharge la page

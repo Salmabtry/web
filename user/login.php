@@ -2,7 +2,8 @@
 
 session_start();//on démarre la session
 
-include('db.php');//comme pour register.php on appelle le fichier de connexion à la base de donnée
+include('../db.php');//comme pour register.php on appelle le fichier de connexion à la base de donnée
+include('../header.php');
 
 //vérification si les données ont bien été envoyées
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             //redirection vers la page d'accueil ->index.php
             //commande trouvé avec l'ia header
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();//php ne lit plus rien apres le exit
 
         } else {
@@ -48,10 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-
-
-<?php include('header.php'); ?>
 
     <main>
         <div class="row justify-content-center">

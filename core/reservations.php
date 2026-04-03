@@ -2,7 +2,8 @@
 
 session_start();
 
-include('db.php');
+include('../db.php');
+include('../header.php');
 
 //accès restraint pour les visiteurs, if vérificateur que l'user est bien connecté 
 if (!isset($_SESSION['user_id'])) {
@@ -57,8 +58,6 @@ $requete = $pdo->prepare("SELECT reservations.*, cars.marque, cars.modele
 $requete->execute([$_SESSION['user_id']]);
 $mes_reservations = $requete->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-<?php include('header.php'); ?>
 
     <main>
 
